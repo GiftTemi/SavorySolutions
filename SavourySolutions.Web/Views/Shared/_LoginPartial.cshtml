@@ -1,0 +1,52 @@
+﻿@using SavourySolutions.Common
+@using SavourySolutions.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<SavourySolutionsUser> SignInManager
+@inject UserManager<SavourySolutionsUser> UserManager
+
+<div class="navbar-nav">
+    @if (this.SignInManager.IsSignedIn(this.User))
+    {
+        <div class="dropdown pl-2">
+            <button type="button" id="admin-btn" class="btn dropdown-toggle" data-toggle="dropdown">
+                <i class="fas fa-user"></i> @(this.User.Identity.Name)
+            </button>
+            <ul class="dropdown-menu">
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <li active-when="/Recipes/Submit" class="nav-item pt-2">
+                        <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="Submit">Submit Recipe</a>
+                    </li>
+                    <li active-when="/Recipes/RecipeList" class="nav-item pt-2">
+                        <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="RecipeList">View Own Recipes</a>
+                    </li>
+                }
+                <li class="nav-item pt-2">
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Profile</a>
+                </li>
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <li active-when="/Dashboard/Index" class="nav-item pt-2">
+                        <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" id="AdminDashboard" title="Admin">Admin Dashboard</a>
+                    </li>
+                }
+                <li class="nav-item pt-2">
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                        <button type="submit" class="nav-link btn btn-link">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    }
+    else
+    {
+        <ul class="navbar-nav">
+            <li active-when="/Account/Register" class="nav-item pl-2">
+                <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li active-when="/Account/Login" class="nav-item pl-2">
+                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        </ul>
+    }
+</div>

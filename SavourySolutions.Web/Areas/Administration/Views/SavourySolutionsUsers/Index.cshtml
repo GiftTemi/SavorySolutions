@@ -1,0 +1,16 @@
+﻿@{
+    this.ViewData["ActivePage"] = SavourySolutionsUserNavPages.SavourySolutionsUsers;
+    this.ViewData["Title"] = "Savory Solutions Users";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="@SavourySolutionsUserNavPages.GetAllNavClass(ViewContext)">
+                    <a asp-controller="SavourySolutionsUsers" asp-action="GetAll">List Savory Solutions Users</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

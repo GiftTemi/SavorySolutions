@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\SavourySolutions.Common\SavourySolutions.Common.csproj" />
+	  <ProjectReference Include="..\SavourySolutions.Data\SavourySolutions.Data.csproj" />
+	  <ProjectReference Include="..\SavourySolutions.Models.InputModels\SavourySolutions.Models.InputModels.csproj" />
+	  <ProjectReference Include="..\SavourySolutions.Services.Data\SavourySolutions.Services.Data.csproj" />
+	</ItemGroup>
+
+</Project>
